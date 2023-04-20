@@ -196,7 +196,7 @@ main .intro {
 }
 
 .textcontent h2:first-of-type {
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 /* 
