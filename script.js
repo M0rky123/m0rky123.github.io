@@ -39,6 +39,22 @@ const songs = [
   { song: "Sweet Child O' Mine", author: "Guns N' Roses", img: "./songs/rock/sweetchildomine.jpg", audio: "./songs/rock/sweetchildomine.mp3" },
 ];
 
+// TOP 10 RANDOMIZER
+
+let topSongsArray = songs;
+let randomNum = Math.ceil(Math.random() * 27);
+let topTenCards = [
+  document.querySelector(".card1"),
+  document.querySelector(".card2"),
+  document.querySelector(".card3"),
+  document.querySelector(".card4"),
+  document.querySelector(".card5"),
+  document.querySelector(".card6"),
+  document.querySelector(".card7"),
+  document.querySelector(".card8"),
+  document.querySelector(".card9"),
+  document.querySelector(".card10"),
+];
 
 // VOLUME CONTROL
 let volume = document.getElementById("volume");
