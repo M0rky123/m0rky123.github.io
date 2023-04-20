@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Noto+Sans:wght@100;400;700&display=swap"
+    rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="marquee">
+      <div class="marquee-content scroll">sleva 50 % na všechna předplatná, čas pouze do konce měsíce!</div>
+      <div class="marquee-content scroll">sleva 50 % na všechna předplatná, čas pouze do konce měsíce!</div>
+    </div>
+  </header>
+  <aside>
+    <nav>
+      <ul>
+        <li><ion-icon name="thermometer-outline"></ion-icon><a href="./top10.html">TOP 10</a></li>
+        <li><ion-icon name="home-outline"></ion-icon><a href="./index.html">Domů</a></li>
+        <li class="selected"><ion-icon name="rocket-outline"></ion-icon><a href="">Předplatná</a></li>
+        <li><ion-icon name="people-outline"></ion-icon><a href="./creators.html">Tvůrci</a></li>
+        <li><ion-icon name="add-outline"></ion-icon><a href="./playlists.html">Playlisty</a></li>
+      </ul>
+      <ul class="playlists">
+        <li><ion-icon name="caret-forward-outline"></ion-icon><a href="">Můj playlist č.1</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <main>
+  </main>
+  <footer>
+    <div class="song-info">
+      <div class="song-cover">
+        <img src="" alt="">
+      </div>
+      <div class="song-desc">
+        <p></p>
+        <p></p>
+      </div>
+    </div>
+    <div class="song-control">
+      <div class="controls">
+        <div class="control-btn">
+          <img src="./imgs/svg/play-skip-back.svg" alt="">
+        </div>
+        <div class="control-btn" id="play-pause">
+          <img src="./imgs/svg/play-circle.svg" alt="">
+        </div>
+        <div class="control-btn">
+          <img src="./imgs/svg/play-skip-forward.svg" alt="">
+        </div>
+      </div>
+      <div class="song-timestamp">
+        <div class="timestamp">
+          <label for="timestamp"></label>
+          <input type="range" id="timestamp" min="0" max="" value="0">
+          <p></p>
+        </div>
+      </div>
+    </div>
+    <div class="song-volume">
+      <div class="volume">
+        <img src="./imgs/svg/volume-off.svg" id="volumeImg" alt="" width="32px">
+        <input type="range" id="volume" min="0" max="100" value="0">
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>

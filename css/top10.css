@@ -1,0 +1,44 @@
+main {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.topintro {
+  font-family: "Comfortaa", cursive;
+  font-size: 1.25rem;
+  color: #f1f2f3;
+}
+
+.topgrid {
+  flex-grow: 1;
+  display: grid;
+  grid-template: 1fr 1fr / repeat(5, 1fr);
+  gap: 4rem;
+  padding: 2rem;
+}
+
+.song {
+  background: #f1f2f366;
+}
+
+.song .cover {
+  aspect-ratio: 1/1;
+  width: 100%;
+  margin-bottom: .25rem;
+}
+
+.song p {
+  color: #f1f2f3;
+  font-family: "Noto Sans", sans-serif;
+  margin-left: 1rem;
+}
+
+.song p:first-of-type {
+  font-size: 1.4rem;
+}
+
+.song p:last-of-type {
+  font-size: 0.8rem;
+  margin-left: calc(1rem + 1px);
+}
