@@ -27,9 +27,9 @@
       <ul>
         <li><ion-icon name="thermometer-outline"></ion-icon><a href="">TOP 10</a></li>
         <li class="selected"><ion-icon name="home-outline"></ion-icon><a href="">Domů</a></li>
-        <li><ion-icon name="rocket-outline"></ion-icon><a href="">Předplatná</a></li>
-        <li><ion-icon name="people-outline"></ion-icon><a href="">Tvůrci</a></li>
-        <li><ion-icon name="add-outline"></ion-icon><a href="">Playlisty</a></li>
+        <li><ion-icon name="rocket-outline"></ion-icon><a href="./pages/plans.html">Předplatná</a></li>
+        <li><ion-icon name="people-outline"></ion-icon><a href="./pages/creators.html">Tvůrci</a></li>
+        <li><ion-icon name="add-outline"></ion-icon><a href="./pages/playlists.html">Playlisty</a></li>
       </ul>
       <ul class="playlists">
         <li><ion-icon name="caret-forward-outline"></ion-icon><a href="">Můj playlist č.1</a></li>
@@ -85,22 +85,34 @@
     </div>
     <div class="song-control">
       <div class="controls">
-        <div class="control-btn skip-previous"><ion-icon name="play-skip-back"></ion-icon></div>
-        <div class="control-btn pause-stop"><ion-icon name="play"></ion-icon></div>
-        <!--<ion-icon name="pause-outline"></ion-icon> <ion-icon name="pause"></ion-icon>-->
-        <div class="control-btn skip-next"><ion-icon name="play-skip-forward"></ion-icon></div>
+        <div class="control-btn">
+          <img src="./imgs/svg/play-skip-back.svg" alt="">
+        </div>
+        <div class="control-btn" id="play-pause">
+          <img src="./imgs/svg/play-circle.svg" alt="">
+        </div>
+        <div class="control-btn">
+          <img src="./imgs/svg/play-skip-forward.svg" alt="">
+        </div>
+      </div>
+      <div class="song-timestamp">
+        <div class="timestamp">
+          <label for="timestamp"></label>
+          <input type="range" id="timestamp" min="0" max="" value="0">
+          <p></p>
+        </div>
       </div>
     </div>
-    <div class="song-timestamp">
-      <input type="range" id="timestamp" min="0" max="">
-    </div>
     <div class="song-volume">
-      <ion-icon name="volume-off"></ion-icon>
+      <div class="volume">
+        <img src="./imgs/svg/volume-off.svg" id="volumeImg" alt="" width="32px">
+        <input type="range" id="volume" min="0" max="100" value="0">
+      </div>
     </div>
   </footer>
 
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-  <script src="./js/menu.js"></script>
+  <script src="./script.js"></script>
 </body>
 </html>

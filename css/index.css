@@ -48,7 +48,7 @@ body {
     transform: translateX(0);
   }
   to {
-    transform: translateX(calc(-100% - 1rem));
+    transform: translateX(calc(-100%));
   }
 }
 
@@ -106,10 +106,13 @@ nav li:hover a {
 nav a {
   font-family: "Noto Sans", sans-serif;
   font-weight: 100;
+  font-size: 1.5rem;
   color: #f1f2f3;
   text-decoration: none;
-  margin: auto 0;
-  max-height: 4rem;
+  padding-left: 2rem;
+  padding: 15.5px 0 15.5px 2rem;
+  width: 100%;
+  place-self: center;
 }
 
 nav ion-icon {
@@ -117,7 +120,6 @@ nav ion-icon {
   aspect-ratio: 1/1;
   color: #f1f2f3;
   padding: 0 1rem;
-  margin: 0 2rem 0 0;
   background: #1e2124;
   min-width: 24px;
   max-width: 24px;
@@ -281,7 +283,7 @@ main .tree {
 footer {
   border-top: 1px solid white;
   display: grid;
-  grid-template: 60% 1fr / 25% 1fr 25%;
+  grid-template: 1fr / 25% 1fr 25%;
 }
 
 /* 
@@ -289,7 +291,7 @@ footer {
 */
 
 footer .song-info {
-  grid-area: 1/1/3/2;
+  grid-area: 1/1/2/2;
   padding: 1rem 0 1rem 1rem;
   display: flex;
   justify-content: flex-start;
@@ -334,20 +336,215 @@ footer .song-info {
 
 footer .song-control {
   grid-area: 1/2/2/3;
+  display: grid;
 }
 
-/* 
-******************** SONG CONTROL - BTNS ********************
-*/
-
-footer .song-timestamp {
-  grid-area: 2/2/3/3;
+.controls {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  place-self: flex-end center;
 }
 
+.control-btn {
+  display: inline-block;
+}
+
+.control-btn img {
+  height: 1.75rem;
+  aspect-ratio: 1/1;
+}
+
+#play-pause img {
+  height: 3rem;
+  aspect-ratio: 1/1;
+}
+
+.song-timestamp {
+  display: grid;
+  padding-top: 0.125rem;
+}
+
+.timestamp {
+  place-self: center;
+  width: 100%;
+  position: relative;
+  margin-bottom: auto;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.timestamp label {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 0.8rem;
+  transform: translate(-25%, -25%);
+  color: #f1f2f3;
+}
+
+.timestamp p {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 0.8rem;
+  transform: translate(25%, -25%);
+  color: #f1f2f3;
+}
+
+#timestamp {
+  -webkit-appearance: none;
+  overflow: hidden;
+  height: 50%;
+  width: 100%;
+  max-width: 600px;
+  background: #f1f2f311;
+  border-radius: 1rem;
+}
+
+#timestamp::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 0px;
+  width: 0px;
+  background: none;
+  box-shadow: -1000px 0 0 1000px #3b3894;
+}
+
+#timestamp:hover::-webkit-slider-thumb {
+  height: 10px;
+  width: 10px;
+  background: #f1f2f3;
+  border-radius: 0.5rem;
+}
+
+#timestamp::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  width: 100%;
+  cursor: pointer;
+}
+
+#timestamp::-moz-range-track {
+  width: 100%;
+  cursor: pointer;
+}
+
+#timestamp::-moz-range-thumb {
+  height: 0px;
+  width: 0px;
+  background: none;
+  border-radius: 0;
+  outline: none;
+  border: none;
+  box-shadow: -1000px 0 0 1000px #3b3894;
+}
+
+#timestamp:hover::-moz-range-thumb {
+  height: 10px;
+  width: 10px;
+  background: #f1f2f3;
+  border-radius: 0.5rem;
+  box-shadow: -1000px 0 0 1000px #3b3894;
+}
+
+#timestamp::-ms-track {
+  width: 100%;
+  cursor: pointer;
+}
+
+#timestamp::-ms-thumb {
+  height: 0px;
+  width: 0px;
+  background: #f1f2f3;
+  box-shadow: -1000px 0 0 1000px #3b3894;
+}
+
+#timestamp:hover::-ms-thumb {
+  height: 10px;
+  width: 10px;
+  background: #f1f2f3;
+  box-shadow: -1000px 0 0 1000px #3b3894;
+}
 /* 
 ******************** SONG CONTROL - VOLUME ********************
 */
 
-footer .song-volume {
-  grid-area: 1/3/3/4;
+.song-volume {
+  grid-area: 1/3/2/4;
+  display: grid;
+}
+
+.volume {
+  width: 100%;
+  place-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.volume ion-icon {
+  margin: auto;
+}
+
+#volume {
+  -webkit-appearance: none;
+  overflow: hidden;
+  height: 10px;
+  width: 100%;
+  max-width: 225px;
+  background: #f1f2f311;
+  border-radius: 1rem;
+}
+#volume::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 0px;
+  width: 0px;
+  background: none;
+  box-shadow: -1000px 0 0 1000px #3b3894;
+}
+#volume:hover::-webkit-slider-thumb {
+  background: #f1f2f3;
+  height: 10px;
+  width: 10px;
+  border-radius: 0.5rem;
+}
+#volume::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  width: 100%;
+  cursor: pointer;
+}
+#volume::-moz-range-track {
+  width: 100%;
+  cursor: pointer;
+}
+#volume::-moz-range-thumb {
+  height: 0px;
+  width: 0px;
+  background: none;
+  border-radius: 0;
+  outline: none;
+  border: none;
+  box-shadow: -1000px 0 0 1000px #3b3894;
+}
+#volume:hover::-moz-range-thumb {
+  height: 10px;
+  width: 10px;
+  background: #f1f2f3;
+  border-radius: 0.5rem;
+  box-shadow: -1000px 0 0 1000px #3b3894;
+}
+#volume::-ms-track {
+  width: 100%;
+  cursor: pointer;
+}
+#volume::-ms-thumb {
+  height: 0px;
+  width: 0px;
+  background: #f1f2f3;
+  box-shadow: -1000px 0 0 1000px #3b3894;
+}
+#volume:hover::-ms-thumb {
+  height: 10px;
+  width: 10px;
+  background: #f1f2f3;
+  box-shadow: -1000px 0 0 1000px #3b3894;
 }
