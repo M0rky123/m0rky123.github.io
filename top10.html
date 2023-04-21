@@ -37,58 +37,108 @@
   </aside>
   <main>
     <div class="topintro">
-      <h1>Písničky, které prostě frčí!</h1>
+      <h1>Písničky, které prostě frčí! <button onclick="topTenSongs()">Nelíbí?</button></h1>
     </div>
     <div class="topgrid">
       <div class="song song1">
-        <div class="cover"><img src="./songs/" alt=""></div>
-        <p class="title"></p>
-        <p class="author"></p>
+        <div class="cover">
+          <img src="./songs/" alt="">
+          <ion-icon name="play"></ion-icon>
+        </div>
+        <div class="desc">
+          <p class="title"></p>
+          <p class="author"></p>
+        </div>
       </div>
       <div class="song song2">
-        <div class="cover"><img src="./songs/" alt=""></div>
-        <p class="title"></p>
-        <p class="author"></p>
+        <div class="cover">
+          <img src="./songs/" alt="">
+          <ion-icon name="play"></ion-icon>
+        </div>
+        <div class="desc">
+          <p class="title"></p>
+          <p class="author"></p>
+        </div>
       </div>
       <div class="song song3">
-        <div class="cover"><img src="./songs/" alt=""></div>
-        <p class="title"></p>
-        <p class="author"></p>
+        <div class="cover">
+          <img src="./songs/" alt="">
+          <ion-icon name="play"></ion-icon>
+        </div>
+        <div class="desc">
+          <p class="title"></p>
+          <p class="author"></p>
+        </div>
       </div>
       <div class="song song4">
-        <div class="cover"><img src="./songs/" alt=""></div>
-        <p class="title"></p>
-        <p class="author"></p>
+        <div class="cover">
+          <img src="./songs/" alt="">
+          <ion-icon name="play"></ion-icon>
+        </div>
+        <div class="desc">
+          <p class="title"></p>
+          <p class="author"></p>
+        </div>
       </div>
       <div class="song song5">
-        <div class="cover"><img src="./songs/" alt=""></div>
-        <p class="title"></p>
-        <p class="author"></p>
+        <div class="cover">
+          <img src="./songs/" alt="">
+          <ion-icon name="play"></ion-icon>
+        </div>
+        <div class="desc">
+          <p class="title"></p>
+          <p class="author"></p>
+        </div>
       </div>
       <div class="song song6">
-        <div class="cover"><img src="./songs/" alt=""></div>
-        <p class="title"></p>
-        <p class="author"></p>
+        <div class="cover">
+          <img src="./songs/" alt="">
+          <ion-icon name="play"></ion-icon>
+        </div>
+        <div class="desc">
+          <p class="title"></p>
+          <p class="author"></p>
+        </div>
       </div>
       <div class="song song7">
-        <div class="cover"><img src="./songs/" alt=""></div>
-        <p class="title"></p>
-        <p class="author"></p>
+        <div class="cover">
+          <img src="./songs/" alt="">
+          <ion-icon name="play"></ion-icon>
+        </div>
+        <div class="desc">
+          <p class="title"></p>
+          <p class="author"></p>
+        </div>
       </div>
       <div class="song song8">
-        <div class="cover"><img src="./songs/" alt=""></div>
-        <p class="title"></p>
-        <p class="author"></p>
+        <div class="cover">
+          <img src="./songs/" alt="">
+          <ion-icon name="play"></ion-icon>
+        </div>
+        <div class="desc">
+          <p class="title"></p>
+          <p class="author"></p>
+        </div>
       </div>
       <div class="song song9">
-        <div class="cover"><img src="./songs/" alt=""></div>
-        <p class="title"></p>
-        <p class="author"></p>
+        <div class="cover">
+          <img src="./songs/" alt="">
+          <ion-icon name="play"></ion-icon>
+        </div>
+        <div class="desc">
+          <p class="title"></p>
+          <p class="author"></p>
+        </div>
       </div>
       <div class="song song10">
-        <div class="cover"><img src="./songs/" alt=""></div>
-        <p class="title"></p>
-        <p class="author"></p>
+        <div class="cover">
+          <img src="./songs/" alt="">
+          <ion-icon name="play"></ion-icon>
+        </div>
+        <div class="desc">
+          <p class="title"></p>
+          <p class="author"></p>
+        </div>
       </div>
     </div>
   </main>
@@ -105,18 +155,18 @@
     <div class="song-control">
       <div class="controls">
         <div class="control-btn">
-          <img src="./imgs/svg/play-skip-back.svg" alt="">
+          <img src="./imgs/svg/play-skip-back.svg" alt="zpet" id="back">
         </div>
         <div class="control-btn" id="play-pause">
-          <img src="./imgs/svg/play-circle.svg" alt="">
+          <img src="./imgs/svg/play-circle.svg" alt="play-pause" id="play">
         </div>
         <div class="control-btn">
-          <img src="./imgs/svg/play-skip-forward.svg" alt="">
+          <img src="./imgs/svg/play-skip-forward.svg" alt="dale" id="next">
         </div>
       </div>
       <div class="song-timestamp">
         <div class="timestamp">
-          <label for="timestamp"></label>
+          <label for="timestamp" id="volumeBtn"></label>
           <input type="range" id="timestamp" min="0" max="" value="0">
           <p></p>
         </div>
