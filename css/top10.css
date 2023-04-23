@@ -4,18 +4,18 @@ main {
   flex-direction: column;
 }
 
-.topintro,
-.topintro button {
+.topintro {
   font-family: "Comfortaa", cursive;
   font-size: 1.25rem;
   color: #f1f2f3;
 }
 
 .topintro button {
+  font-family: "Comfortaa", cursive;
   font-size: 1.8rem;
-  font-weight: 900;
+  font-weight: 700;
+  color: #2f2d76;
   background: #ffcc44;
-  color: #1e2124;
   outline: transparent;
   border: none;
   padding: 0.5rem 0.5rem 0.125rem 0.5rem;
@@ -33,7 +33,7 @@ main {
 }
 
 .song {
-  background: #2f2d76;
+  background: #424549;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;

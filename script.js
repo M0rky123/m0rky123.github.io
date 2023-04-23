@@ -63,6 +63,8 @@ function topTenSongs() {
     topTenCards[i].children[1].children[1].textContent = arraycache[i].author;
     if (topTenCards[i].children[1].children[0].textContent.length > 22) {
       topTenCards[i].children[1].children[0].classList.add("balance");
+    } else {
+      topTenCards[i].children[1].children[0].classList.remove("balance");
     }
   }
 }
@@ -84,9 +86,18 @@ function shuffle(array) {
 // VOLUME CONTROL
 let volume = document.getElementById("volume");
 let volumeImg = document.getElementById("volumeImg");
-const page = window.location.pathname.split("/").pop();
+let volumeHolder;
+let muted = false;
 
 volume.addEventListener("input", () => {
+  volumeValue();
+  volumeHolder = volume.value;
+  if (muted) {
+    muted = false;
+  }
+});
+
+function volumeValue() {
   if (volume.value >= 66) {
     volumeImg.src = "./imgs/svg/volume-high.svg";
   } else if (volume.value >= 33) {
@@ -96,13 +107,24 @@ volume.addEventListener("input", () => {
   } else {
     volumeImg.src = "./imgs/svg/volume-off.svg";
   }
-});
+}
 
-volume.addEventListener("input", function () {
+volume.addEventListener("input", () => {
   audio.volume = volume.value / 100;
 });
 
-volumeImg.addEventListener("click", () => {});
+volumeImg.addEventListener("click", () => {
+  if (muted === false) {
+    volumeHolder = volume.value;
+    volume.value = 0;
+    volumeImg.src = "./imgs/svg/volume-off.svg";
+    muted = true;
+  } else {
+    volume.value = volumeHolder;
+    volumeValue();
+    muted = false;
+  }
+});
 
 // PLAYER ITSELF
 const back = document.getElementById("back");
