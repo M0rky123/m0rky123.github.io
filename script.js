@@ -39,7 +39,14 @@ const songs = [
   { song: "Sweet Child O' Mine", author: "Guns N' Roses", img: "./songs/rock/sweetchildomine.jpg", audio: "./songs/rock/sweetchildomine.mp3" },
 ];
 
-// TOP 10 RANDOMIZER
+// VARIABLES
+const back = document.getElementById("back");
+const play = document.getElementById("play");
+const next = document.getElementById("next");
+let timestamp = document.getElementById("timestamp");
+let song = new Audio();
+let playing = false;
+
 let topTenCards = [
   document.querySelector(".song1"),
   document.querySelector(".song2"),
@@ -53,12 +60,21 @@ let topTenCards = [
   document.querySelector(".song10"),
 ];
 
+let volume = document.getElementById("volume");
+let volumeImg = document.getElementById("volumeImg");
+let volumeHolder;
+let muted = false;
+
+// TOP 10
 window.addEventListener("load", topTenSongs());
 
 function topTenSongs() {
   let arraycache = shuffle(songs);
   for (let i = 0; i < topTenCards.length; i++) {
     topTenCards[i].children[0].children[0].src = arraycache[i].img;
+    topTenCards[i].children[0].children[1].onclick = function () {
+      playTopTen(arraycache[i].audio);
+    };
     topTenCards[i].children[1].children[0].textContent = arraycache[i].song;
     topTenCards[i].children[1].children[1].textContent = arraycache[i].author;
     if (topTenCards[i].children[1].children[0].textContent.length > 22) {
@@ -67,6 +83,14 @@ function topTenSongs() {
       topTenCards[i].children[1].children[0].classList.remove("balance");
     }
   }
+}
+
+function playTopTen(audio) {
+  song.load();
+  song = new Audio(audio);
+  song.play();
+  play.src = "./imgs/svg/pause-circle.svg";
+  playing = true;
 }
 
 // Vypůjčeno ze stackoverflow :^)
@@ -84,10 +108,6 @@ function shuffle(array) {
 }
 
 // VOLUME CONTROL
-let volume = document.getElementById("volume");
-let volumeImg = document.getElementById("volumeImg");
-let volumeHolder;
-let muted = false;
 
 volume.addEventListener("input", () => {
   volumeValue();
@@ -110,7 +130,7 @@ function volumeValue() {
 }
 
 volume.addEventListener("input", () => {
-  audio.volume = volume.value / 100;
+  song.volume = volume.value / 100;
 });
 
 volumeImg.addEventListener("click", () => {
@@ -126,19 +146,28 @@ volumeImg.addEventListener("click", () => {
   }
 });
 
-// PLAYER ITSELF
-const back = document.getElementById("back");
-const play = document.getElementById("play");
-const next = document.getElementById("next");
-let timestamp = document.getElementById("timestamp");
-let song;
+// MUSIC PLAYER
 
 back.addEventListener("click", () => {});
-play.addEventListener("click", () => {});
 next.addEventListener("click", () => {});
+play.addEventListener("click", () => {
+  songPlayStop();
+});
+
+function songPlayStop() {
+  if (playing === false) {
+    song.play();
+    play.src = "./imgs/svg/pause-circle.svg";
+    playing = true;
+  } else {
+    song.pause();
+    play.src = "./imgs/svg/play-circle.svg";
+    playing = false;
+  }
+}
 
 timestamp.addEventListener("click", () => {
   song.currentTime = timestamp.value;
 });
 
-play.addEventListener("click", () => {});
+// QUEUE

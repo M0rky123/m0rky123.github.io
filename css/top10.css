@@ -47,7 +47,7 @@ main {
   overflow: hidden;
 }
 
-.cover ion-icon {
+.cover .playBtnTop10 {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
