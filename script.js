@@ -1,7 +1,7 @@
-// SONG ARRAY
+// SONGS ARRAY
 const songs = [
   { song: "Crossroad", author: "Robert Johnson", img: "./songs/blues/crossroad.jpg", audio: "./songs/blues/crossroad.mp3" },
-  { song: "Dust My Broom", author: "Elmore James", img: "./songs/blues/dustmybroom.jpg", audio: "./songs/blues/dustmybroom.jpg" },
+  { song: "Dust My Broom", author: "Elmore James", img: "./songs/blues/dustmybroom.jpg", audio: "./songs/blues/dustmybroom.mp3" },
   { song: "The Thrill Is Gone", author: "B.B.King", img: "./songs/blues/thethrillisgone.jpg", audio: "./songs/blues/thethrillisgone.mp3" },
   { song: "Für Elise", author: "Ludwig van Beethoven", img: "./songs/classical/fürelise.jpg", audio: "./songs/classical/fürelise.mp3" },
   { song: "Moonlight Sonata", author: "Ludwig van Beethoven", img: "./songs/classical/moonlightsonata.jpg", audio: "./songs/classical/moonlightsonata.mp3" },
@@ -43,7 +43,9 @@ const songs = [
 const back = document.getElementById("back");
 const play = document.getElementById("play");
 const next = document.getElementById("next");
-let timestamp = document.getElementById("timestamp");
+const cover = document.getElementById("song-cover");
+const title = document.getElementById("song-desc");
+const timestamp = document.getElementById("timestamp");
 let song = new Audio();
 let playing = false;
 
@@ -66,14 +68,17 @@ let volumeHolder;
 let muted = false;
 
 // TOP 10
-window.addEventListener("load", topTenSongs());
+window.addEventListener("load", function () {
+  topTenSongs();
+  volumeValue();
+});
 
 function topTenSongs() {
   let arraycache = shuffle(songs);
   for (let i = 0; i < topTenCards.length; i++) {
     topTenCards[i].children[0].children[0].src = arraycache[i].img;
     topTenCards[i].children[0].children[1].onclick = function () {
-      playTopTen(arraycache[i].audio);
+      songPlay(arraycache[i]);
     };
     topTenCards[i].children[1].children[0].textContent = arraycache[i].song;
     topTenCards[i].children[1].children[1].textContent = arraycache[i].author;
@@ -83,14 +88,6 @@ function topTenSongs() {
       topTenCards[i].children[1].children[0].classList.remove("balance");
     }
   }
-}
-
-function playTopTen(audio) {
-  song.load();
-  song = new Audio(audio);
-  song.play();
-  play.src = "./imgs/svg/pause-circle.svg";
-  playing = true;
 }
 
 // Vypůjčeno ze stackoverflow :^)
@@ -117,7 +114,21 @@ volume.addEventListener("input", () => {
   }
 });
 
+volumeImg.addEventListener("click", () => {
+  if (muted === false) {
+    volumeHolder = volume.value;
+    volume.value = 0;
+    volumeValue();
+    muted = true;
+  } else {
+    volume.value = volumeHolder;
+    volumeValue();
+    muted = false;
+  }
+});
+
 function volumeValue() {
+  song.volume = volume.value / 100;
   if (volume.value >= 66) {
     volumeImg.src = "./imgs/svg/volume-high.svg";
   } else if (volume.value >= 33) {
@@ -129,23 +140,6 @@ function volumeValue() {
   }
 }
 
-volume.addEventListener("input", () => {
-  song.volume = volume.value / 100;
-});
-
-volumeImg.addEventListener("click", () => {
-  if (muted === false) {
-    volumeHolder = volume.value;
-    volume.value = 0;
-    volumeImg.src = "./imgs/svg/volume-off.svg";
-    muted = true;
-  } else {
-    volume.value = volumeHolder;
-    volumeValue();
-    muted = false;
-  }
-});
-
 // MUSIC PLAYER
 
 back.addEventListener("click", () => {});
@@ -153,6 +147,23 @@ next.addEventListener("click", () => {});
 play.addEventListener("click", () => {
   songPlayStop();
 });
+
+function songPlay(audio) {
+  volumeHolder = volume.value;
+  song.load();
+  song = new Audio(audio.audio);
+  song.volume = volumeHolder / 100;
+  playing = false;
+  songPlayStop();
+  cover.children[0].src = audio.img;
+  title.children[0].textContent = audio.song;
+  title.children[1].textContent = audio.author;
+  timestamp.max = song.duration;
+}
+
+console.log(cover.children[0]);
+console.log(title.children[0]);
+console.log(title.children[1]);
 
 function songPlayStop() {
   if (playing === false) {
@@ -166,7 +177,7 @@ function songPlayStop() {
   }
 }
 
-timestamp.addEventListener("click", () => {
+timestamp.addEventListener("input", () => {
   song.currentTime = timestamp.value;
 });
 

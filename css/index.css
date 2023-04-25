@@ -297,39 +297,45 @@ footer .song-info {
   padding: 1rem 0 1rem 1rem;
   display: flex;
   justify-content: flex-start;
+  align-items: center;
 }
 
-.song-info .song-cover {
+.song-info #song-cover {
   display: inline-block;
   aspect-ratio: 1/1;
   height: 100%;
   margin: 0 1rem 0 0;
   padding: 0.25rem;
   border-radius: 0.125rem;
+  max-height: 70px;
+  overflow: hidden;
 }
 
-.song-cover img {
-  width: max-content;
+#song-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.song-info .song-desc {
+.song-info #song-desc {
   display: inline-block;
+  height: fit-content;
 }
 
-.song-desc p {
+#song-desc p {
   color: #f1f2f3;
   font-family: "Noto Sans", sans-serif;
 }
 
-.song-desc p:first-of-type {
-  font-size: 2rem;
-  line-height: 2rem;
+#song-desc p:first-of-type {
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+  max-height: 1.5rem;
 }
 
-.song-desc p:last-of-type {
+#song-desc p:last-of-type {
   font-size: 0.8rem;
   line-height: 1.5rem;
-  margin-left: 2px;
 }
 
 /* 
