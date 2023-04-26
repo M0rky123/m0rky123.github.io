@@ -158,12 +158,9 @@ function songPlay(audio) {
   cover.children[0].src = audio.img;
   title.children[0].textContent = audio.song;
   title.children[1].textContent = audio.author;
-  timestamp.max = song.duration;
+  timestampMax();
+  audioDuration();
 }
-
-console.log(cover.children[0]);
-console.log(title.children[0]);
-console.log(title.children[1]);
 
 function songPlayStop() {
   if (playing === false) {
@@ -177,8 +174,25 @@ function songPlayStop() {
   }
 }
 
+function timestampMax() {
+  let intervalID = setInterval(function timestampMax() {
+    if (song.duration) {
+      console.log(timestamp.max);
+      console.log(song.duration);
+      timestamp.max = song.duration;
+      document.getElementById("timestamp2").textContent = song.duration;
+      clearInterval(intervalID);
+    }
+  }, 500);
+}
+
 timestamp.addEventListener("input", () => {
   song.currentTime = timestamp.value;
 });
 
+function audioDuration() {
+  timestamp.value = song.currentTime;
+  document.getElementById("timestamp1").textContent = song.currentTime;
+  setTimeout(audioDuration, 1);
+}
 // QUEUE
