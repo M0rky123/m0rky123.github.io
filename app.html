@@ -5,28 +5,60 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MELODIO - PLAYER</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <section class="menu">
+  <aside>
+    <menu class="menu">
       <button id="home"><img src="./imgs/icons/home.png" alt="home icon">Domovská stránka</button>
       <button id="search"><img src="./imgs/icons/lupe.png" alt="lupe icon">Vyhledávání</button>
       <button id="playlists"><img src="./imgs/icons/playlists.png" alt="playlists icon">Tvé playlisty</button>
-    </section>
+    </menu>
     <section class="controls">
       <div class="song-info">
-        <div class="cover-title"></div>
-        <div class="play-timestamp"></div>
-        <div class="volume"></div>
+        <div class="cover">
+          <div class="cover-img"><img src="" alt="song cover"></div>
+          <div class="cover-text">
+            <h3></h3>
+            <h4></h4>
+          </div>
+          <div class="fav">
+            <img src="./imgs/icons/liked-empty.png" alt="fav">
+            <img src="./imgs/icons/liked-hover.png" alt="fav-hover">
+          </div>
+        </div>
+        <div class="play-timestamp">
+          <div class="btns">
+            <button><img src="./imgs/icons/previous.png" alt="previous song"></button>
+            <button><img src="./imgs/icons/play.png" alt="play/pause"></button>
+            <button><img src="./imgs/icons/next.png" alt="next song"></button>
+          </div>
+          <div class="timestamp">
+            <label for="time-range">--:--</label>
+            <input type="range" name="time-range" id="time-range" step="1" min="0" max="100" value="0">
+            <span>--:--</span>
+          </div>
+        </div>
+        <div class="volume">
+          <img src="./imgs/icons/volume-muted.png" alt="volume">
+          <input type="range" name="volume" id="volume-range" step="1" min="0" max="100" value="0">
+        </div>
       </div>
       <div class="song-controls">
-        <button id="repeat"></button>
-        <button id="shuffle"></button>
-        <button id="mixer"></button>
-        <button id="queue"></button>
+        <button id="repeat"><img src="./imgs/icons/repeat.png" alt="repeat"></button>
+        <button id="shuffle"><img src="./imgs/icons/shuffle.png" alt="shuffle"></button>
+        <button id="speed"><img src="./imgs/icons/speed.png" alt="speed"></button>
+        <button id="queue"><img src="./imgs/icons/queue.png" alt="queue"></button>
       </div>
     </section>
-  </header>
-  <main></main>
+  </aside>
+  <main>
+    <section class="search"></section>
+    <section class="page-content">
+      <div class="might-like-mixes"></div>
+      <div class="might-like-songs"></div>
+      <div class="might-like-artists"></div>
+    </section>
+  </main>
 </body>
 </html>
