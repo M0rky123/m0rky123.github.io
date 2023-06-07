@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MELODIO - PLAYER</title>
+  <link rel="shortcut icon" href="./imgs/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,14 +18,14 @@
     <section class="controls">
       <div class="song-info">
         <div class="cover-img">
-          <img src="./imgs/000000.jpg" alt="song cover" width="20" height="20">
+          <img id="song-cover" src="./imgs/000000.jpg" alt="song cover" width="20" height="20">
         </div>
         <div>
           <div class="cover-text">
             <div class="song">
-              <h2>GOLDWING</h2>
+              <h2></h2>
             </div>
-            <h3>Billie Eilish</h3>
+            <h3></h3>
           </div>
           <div>
             <img src="./imgs/icons/liked-empty.svg" alt="empty">
@@ -33,20 +34,20 @@
       </div>
       <div class="basic-controls">
         <div class="btns">
-          <button><img src="./imgs/icons/previous.svg" alt="previous song"></button>
-          <button><img src="./imgs/icons/play.svg" alt="play/pause"></button>
-          <button><img src="./imgs/icons/next.svg" alt="next song"></button>
+          <button id="prev"><img src="./imgs/icons/previous.svg" alt="previous song"></button>
+          <button id="play"><img src="./imgs/icons/play.svg" alt="play/pause"></button>
+          <button id="next"><img src="./imgs/icons/next.svg" alt="next song"></button>
         </div>
         <div class="timestamp">
           <div>
             <label for="time-range">--:--</label><span>--:--</span>
           </div>
-          <input type="range" name="time" id="time-input" step="1" min="0" max="100" value="0">
+          <input type="range" name="time" id="timestamp" step="1" min="0" max="100" value="0">
         </div>
       </div>
       <div class="volume">
-        <img src="./imgs/icons/volume-muted.svg" alt="volume">
-        <input type="range" name="volume" id="volume-input" step="1" min="0" max="100" value="0">
+        <img id="volumeImg" src="./imgs/icons/volume-muted.svg" alt="volume">
+        <input type="range" name="volume" id="volumeInput" step="1" min="0" max="100" value="0">
       </div>
       <div class="extra-controls">
         <button id="repeat"><img src="./imgs/icons/repeat.svg" alt="repeat"></button>
@@ -57,10 +58,10 @@
     </section>
   </aside>
   <main>
-    <section class="search">
+    <!-- <section class="search">
       <label for="search"><img src="./imgs/icons/search.svg" alt="search"></label>
       <input type="text" name="search" id="search-input" placeholder="Která melodie to bude dnes?">
-    </section>
+    </section> -->
     <section class="page-content">
       <div class="might-like-mixes"></div>
       <div class="might-like-songs"></div>
