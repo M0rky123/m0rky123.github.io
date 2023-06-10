@@ -23,9 +23,9 @@
         <div>
           <div class="cover-text">
             <div class="song">
-              <h2></h2>
+              <h2 id="songTitle"></h2>
             </div>
-            <h3></h3>
+            <h3 id="songAuthor"></h3>
           </div>
           <div>
             <img src="./imgs/icons/liked-empty.svg" alt="empty">
@@ -34,20 +34,20 @@
       </div>
       <div class="basic-controls">
         <div class="btns">
-          <button id="prev"><img src="./imgs/icons/previous.svg" alt="previous song"></button>
-          <button id="play"><img src="./imgs/icons/play.svg" alt="play/pause"></button>
-          <button id="next"><img src="./imgs/icons/next.svg" alt="next song"></button>
+          <button><img src="./imgs/icons/previous.svg" id="prev" alt="previous song"></button>
+          <button><img src="./imgs/icons/play.svg" id="play" alt="play/pause"></button>
+          <button><img src="./imgs/icons/next.svg" id="next" alt="next song"></button>
         </div>
         <div class="timestamp">
           <div>
-            <label for="time-range">--:--</label><span>--:--</span>
+            <span>--:--</span><span>--:--</span>
           </div>
           <input type="range" name="time" id="timestamp" step="1" min="0" max="100" value="0">
         </div>
       </div>
       <div class="volume">
-        <img id="volumeImg" src="./imgs/icons/volume-muted.svg" alt="volume">
-        <input type="range" name="volume" id="volumeInput" step="1" min="0" max="100" value="0">
+        <img id="volumeImg" src="./imgs/icons/volume-low.svg" alt="volume">
+        <input type="range" name="volume" id="volumeInput" step="1" min="0" max="100" value="30">
       </div>
       <div class="extra-controls">
         <button id="repeat"><img src="./imgs/icons/repeat.svg" alt="repeat"></button>

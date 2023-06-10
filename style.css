@@ -170,6 +170,7 @@ button > img {
 
 .titleLonger {
   animation: marquee 5s linear infinite alternate;
+  animation-delay: 2s;
   box-shadow: inset 22px 0 2px -22px rgba(0, 0, 0, 0.45), inset -22px 0 2px -22px rgba(0, 0, 0, 0.45);
 }
 

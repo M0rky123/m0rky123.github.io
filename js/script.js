@@ -1,6 +1,22 @@
 import { database } from "./database.js";
 
+//VARIABLES - music player
+const prev = document.getElementById("prev");
+const play = document.getElementById("play");
+const next = document.getElementById("next");
+const title = document.getElementById("songTitle");
+const author = document.getElementById("songAuthor");
+const cover = document.getElementById("song-cover");
+const timestamp = document.getElementById("timestamp");
+let playing = false;
 let song = new Audio();
+
+//VARIABLES - volume
+let volume = document.getElementById("volumeInput");
+let volumeImg = document.getElementById("volumeImg");
+let volumeHolder;
+let muted = false;
+
 for (const key in database) {
   const artist = database[key][0];
   const songCard = document.createElement("div");
@@ -16,7 +32,7 @@ for (const key in database) {
     const button = document.createElement("button");
     button.textContent = "Play";
     button.addEventListener("click", () => {
-      playSong(song.mp3);
+      songPlay(song, artist);
     });
     songContainer.appendChild(button);
     songCard.appendChild(songContainer);
@@ -26,21 +42,21 @@ for (const key in database) {
 }
 
 // MARQUEE
-const songTitleContainer = document.querySelector(".song");
-const songTitle = document.querySelector(".song > :first-child");
-if (songTitle.clientWidth > songTitleContainer.clientWidth) {
-  songTitle.classList.toggle("titleLonger");
+function marquee() {
+  const songTitleContainer = document.querySelector(".song");
+  const songTitle = document.getElementById("songTitle");
+  if (songTitle.clientWidth > songTitleContainer.clientWidth) {
+    songTitle.classList.add("titleLonger");
+  } else {
+    songTitle.classList.remove("titleLonger");
+  }
 }
 
 // VOLUME
-let volume = document.getElementById("volumeInput");
-let volumeImg = document.getElementById("volumeImg");
-let volumeHolder;
-let muted = false;
-
 volume.addEventListener("input", () => {
   volumeValue();
   volumeHolder = volume.value;
+  song.volume = volumeHolder / 100;
   if (muted) {
     muted = false;
   }
@@ -57,6 +73,7 @@ volumeImg.addEventListener("click", () => {
     volumeValue();
     muted = false;
   }
+  song.volume = volumeHolder / 100;
 });
 
 function volumeValue() {
@@ -70,36 +87,23 @@ function volumeValue() {
 }
 
 // MUSIC PLAYER
-const prev = document.getElementById("prev");
-const play = document.getElementById("play");
-const next = document.getElementById("next");
-const cover = document.getElementById("song-cover");
-const timestamp = document.getElementById("timestamp");
-// let song = new Audio();
-let playing = false;
-
 prev.addEventListener("click", () => {});
 next.addEventListener("click", () => {});
 play.addEventListener("click", () => {
   songPlayStop();
 });
 
-function playSong(audio) {
-  song = new Audio(audio);
-  song.play();
-  console.log("funguju");
-}
-
-function songPlay(audio) {
+function songPlay(audio, singer) {
   volumeHolder = volume.value;
-  song.load();
-  song = new Audio(audio.audio);
+  song.load(audio.mp3);
+  song = new Audio(audio.mp3);
   song.volume = volumeHolder / 100;
   playing = false;
   songPlayStop();
-  cover.children[0].src = audio.img;
-  title.children[0].textContent = audio.song;
-  title.children[1].textContent = audio.author;
+  cover.src = audio.jpg;
+  title.textContent = audio.song;
+  author.textContent = singer.singer;
+  marquee();
   timestampMax();
   audioDuration();
 }
@@ -107,11 +111,11 @@ function songPlay(audio) {
 function songPlayStop() {
   if (playing === false) {
     song.play();
-    play.src = "./imgs/svg/pause-circle.svg";
+    play.src = "./imgs/icons/pause.svg";
     playing = true;
   } else {
     song.pause();
-    play.src = "./imgs/svg/play-circle.svg";
+    play.src = "./imgs/icons/play.svg";
     playing = false;
   }
 }
@@ -119,10 +123,8 @@ function songPlayStop() {
 function timestampMax() {
   let intervalID = setInterval(function timestampMax() {
     if (song.duration) {
-      console.log(timestamp.max);
-      console.log(song.duration);
       timestamp.max = song.duration;
-      document.getElementById("timestamp2").textContent = song.duration;
+      document.querySelector(".timestamp > div > span:last-of-type").textContent = formatujCas(song.duration);
       clearInterval(intervalID);
     }
   }, 500);
@@ -134,6 +136,12 @@ timestamp.addEventListener("input", () => {
 
 function audioDuration() {
   timestamp.value = song.currentTime;
-  document.getElementById("timestamp1").textContent = song.currentTime;
+  document.querySelector(".timestamp > div > span:first-of-type").textContent = formatujCas(song.currentTime);
   setTimeout(audioDuration, 1);
+}
+
+function formatujCas(cas) {
+  let minuty = Math.floor(Math.floor(cas) / 60);
+  let sekundy = Math.floor(Math.floor(cas) % 60) < 10 ? `0${Math.floor(Math.floor(cas) % 60)}` : Math.floor(Math.floor(cas) % 60);
+  return `${minuty}:${sekundy}`;
 }
