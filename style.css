@@ -374,3 +374,19 @@ main {
   background: #3f3f3f;
   color: #efefef;
 }
+
+.page-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem 0.25rem;
+  color: #efefef;
+}
+
+.page-content > .song-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content > .song-card > button {
+  max-width: 16rem;
+}
