@@ -1,6 +1,6 @@
 import { database } from "./database.js";
 
-//VARIABLES - music player
+// VARIABLES - music player
 const prev = document.getElementById("prev");
 const play = document.getElementById("play");
 const next = document.getElementById("next");
@@ -11,45 +11,44 @@ const timestamp = document.getElementById("timestamp");
 let playing = false;
 let song = new Audio();
 
-//VARIABLES - volume
+// VARIABLES - volume
 let volume = document.getElementById("volumeInput");
 let volumeImg = document.getElementById("volumeImg");
 let volumeHolder;
 let muted = false;
 
+// VARIABLES - marquee animation
+const titleContainer = document.querySelector(".song");
+
 for (const key in database) {
   const artist = database[key][0];
   const songCard = document.createElement("div");
   songCard.classList.add("song-card");
-  songCard.innerHTML += `<img src="${artist.picture}" alt="artist-cover" width="100px" height="100px">`;
-  songCard.innerHTML += `<h3>Zpěvák: ${artist.singer}</h3>`;
+  songCard.innerHTML += `<div class="artist"><img src="${artist.picture}" alt="artist-cover" width="100px" height="100px"><h3>${artist.singer}</h3></div>`;
+  const songs = document.createElement("div");
+  songs.classList.add("songs")
   for (let i = 1; i < database[key].length; i++) {
     const song = database[key][i];
     const songContainer = document.createElement("div");
     songContainer.classList.add("song");
     songContainer.innerHTML += `<img src="${song.jpg}" alt="artist-cover" width="50px" height="50px">`;
-    songContainer.innerHTML += `Píseň: ${song.song}`;
+    songContainer.innerHTML += `<span>${song.song}</span>`;
     const button = document.createElement("button");
-    button.textContent = "Play";
+    button.innerHTML = '<img src="./imgs/favicon.ico" alt="artist-cover" width="50px" height="50px">';
     button.addEventListener("click", () => {
       songPlay(song, artist);
     });
     songContainer.appendChild(button);
-    songCard.appendChild(songContainer);
+    songs.appendChild(songContainer);
+    songCard.appendChild(songs);
   }
-
   document.querySelector(".page-content").appendChild(songCard);
 }
 
 // MARQUEE
 function marquee() {
-  const songTitleContainer = document.querySelector(".song");
-  const songTitle = document.getElementById("songTitle");
-  if (songTitle.clientWidth > songTitleContainer.clientWidth) {
-    songTitle.classList.add("titleLonger");
-  } else {
-    songTitle.classList.remove("titleLonger");
-  }
+  document.querySelector(":root").style.setProperty("--marquee", titleContainer.clientWidth - title.clientWidth + "px");
+  title.clientWidth > titleContainer.clientWidth ? title.classList.add("titleLonger") : title.classList.remove("titleLonger");
 }
 
 // VOLUME
@@ -100,11 +99,11 @@ function songPlay(audio, singer) {
   song.volume = volumeHolder / 100;
   playing = false;
   songPlayStop();
+  timestampMax();
   cover.src = audio.jpg;
   title.textContent = audio.song;
   author.textContent = singer.singer;
   marquee();
-  timestampMax();
   audioDuration();
 }
 
@@ -124,7 +123,7 @@ function timestampMax() {
   let intervalID = setInterval(function timestampMax() {
     if (song.duration) {
       timestamp.max = song.duration;
-      document.querySelector(".timestamp > div > span:last-of-type").textContent = formatujCas(song.duration);
+      document.querySelector(".timestamp > div > span:last-of-type").textContent = formatedTime(song.duration);
       clearInterval(intervalID);
     }
   }, 500);
@@ -136,11 +135,11 @@ timestamp.addEventListener("input", () => {
 
 function audioDuration() {
   timestamp.value = song.currentTime;
-  document.querySelector(".timestamp > div > span:first-of-type").textContent = formatujCas(song.currentTime);
+  document.querySelector(".timestamp > div > span:first-of-type").textContent = formatedTime(song.currentTime);
   setTimeout(audioDuration, 1);
 }
 
-function formatujCas(cas) {
+function formatedTime(cas) {
   let minuty = Math.floor(Math.floor(cas) / 60);
   let sekundy = Math.floor(Math.floor(cas) % 60) < 10 ? `0${Math.floor(Math.floor(cas) % 60)}` : Math.floor(Math.floor(cas) % 60);
   return `${minuty}:${sekundy}`;
