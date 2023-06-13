@@ -8,12 +8,12 @@ const title = document.getElementById("songTitle");
 const author = document.getElementById("songAuthor");
 const cover = document.getElementById("song-cover");
 const timestamp = document.getElementById("timestamp");
-let playing = false;
+let playing = true;
 let song = new Audio();
 
 // VARIABLES - volume
-let volume = document.getElementById("volumeInput");
-let volumeImg = document.getElementById("volumeImg");
+const volume = document.getElementById("volumeInput");
+const volumeImg = document.getElementById("volumeImg");
 let volumeHolder;
 let muted = false;
 
@@ -26,7 +26,7 @@ for (const key in database) {
   songCard.classList.add("song-card");
   songCard.innerHTML += `<div class="artist"><img src="${artist.picture}" alt="artist-cover" width="100px" height="100px"><h3>${artist.singer}</h3></div>`;
   const songs = document.createElement("div");
-  songs.classList.add("songs")
+  songs.classList.add("songs");
   for (let i = 1; i < database[key].length; i++) {
     const song = database[key][i];
     const songContainer = document.createElement("div");
@@ -53,33 +53,32 @@ function marquee() {
 
 // VOLUME
 volume.addEventListener("input", () => {
-  volumeValue();
-  volumeHolder = volume.value;
-  song.volume = volumeHolder / 100;
-  if (muted) {
+  if (muted === true) {
     muted = false;
   }
+  song.volume = volume.value / 100;
+  volumeImgChanger();
 });
 
 volumeImg.addEventListener("click", () => {
   if (muted === false) {
     volumeHolder = volume.value;
+    song.volume = 0;
     volume.value = 0;
-    volumeValue();
+    volumeImgChanger();
     muted = true;
   } else {
     volume.value = volumeHolder;
-    volumeValue();
+    song.volume = volumeHolder / 100;
+    volumeHolder = 0;
+    volumeImgChanger();
     muted = false;
   }
-  song.volume = volumeHolder / 100;
 });
 
-function volumeValue() {
-  if (volume.value >= 50) {
-    volumeImg.src = "./imgs/icons/volume-high.svg";
-  } else if (volume.value >= 1) {
-    volumeImg.src = "./imgs/icons/volume-low.svg";
+function volumeImgChanger() {
+  if (volume.value >= 1) {
+    volume.value >= 50 ? (volumeImg.src = "./imgs/icons/volume-high.svg") : (volumeImg.src = "./imgs/icons/volume-low.svg");
   } else {
     volumeImg.src = "./imgs/icons/volume-muted.svg";
   }
@@ -89,34 +88,39 @@ function volumeValue() {
 prev.addEventListener("click", () => {});
 next.addEventListener("click", () => {});
 play.addEventListener("click", () => {
-  songPlayStop();
+  playPause();
 });
 
 function songPlay(audio, singer) {
-  volumeHolder = volume.value;
   song.load(audio.mp3);
   song = new Audio(audio.mp3);
-  song.volume = volumeHolder / 100;
-  playing = false;
-  songPlayStop();
+  song.volume = volume.value / 100;
+  playing = true;
+  playPause();
+  songControls(audio, singer);
+}
+
+function playPause() {
+  function _songPlay() {
+    song.play();
+    play.src = "./imgs/icons/pause.svg";
+    playing = false;
+  }
+  function _songPause() {
+    song.pause();
+    play.src = "./imgs/icons/play.svg";
+    playing = true;
+  }
+  playing ? _songPlay() : _songPause();
+}
+
+function songControls(audio, singer) {
   timestampMax();
   cover.src = audio.jpg;
   title.textContent = audio.song;
   author.textContent = singer.singer;
-  marquee();
   audioDuration();
-}
-
-function songPlayStop() {
-  if (playing === false) {
-    song.play();
-    play.src = "./imgs/icons/pause.svg";
-    playing = true;
-  } else {
-    song.pause();
-    play.src = "./imgs/icons/play.svg";
-    playing = false;
-  }
+  marquee();
 }
 
 function timestampMax() {
@@ -126,7 +130,7 @@ function timestampMax() {
       document.querySelector(".timestamp > div > span:last-of-type").textContent = formatedTime(song.duration);
       clearInterval(intervalID);
     }
-  }, 500);
+  }, 30);
 }
 
 timestamp.addEventListener("input", () => {

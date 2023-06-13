@@ -403,6 +403,10 @@ main {
   white-space: nowrap;
 }
 
+.artist > img {
+  border-radius: 50%;
+}
+
 .artist::after {
   content: "";
   position: absolute;
@@ -416,14 +420,17 @@ main {
 .songs {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
   grid-template-rows: repeat(auto-fit, minmax(1rem, 1fr));
-  gap: 1rem;
+  gap: auto;
 }
 
 .song {
   position: relative;
   display: flex;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
   gap: 1rem;
 }
 
@@ -432,8 +439,8 @@ main {
   transition: opacity 0.25s ease;
 }
 
-.artist > img {
-  border-radius: 50%;
+.song > img {
+  border-radius: 7px;
 }
 
 .song button {
