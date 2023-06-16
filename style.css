@@ -308,10 +308,14 @@ input[type="range"]:hover::-ms-thumb {
   gap: 0.6rem;
 }
 
-.volume > img {
-  max-height: 1.5rem;
-  aspect-ratio: 1/1;
+.volume > button {
   cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.volume > button > img {
+  display: block;
 }
 
 .extra-controls {
@@ -435,7 +439,8 @@ main {
   gap: 1rem;
 }
 
-.song:hover > button {
+.song:hover > button,
+.song:focus > button {
   opacity: 1;
   transition: opacity 0.25s ease;
 }
