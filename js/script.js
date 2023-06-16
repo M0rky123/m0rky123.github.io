@@ -13,7 +13,7 @@ let song = new Audio();
 
 // VARIABLES - volume
 const volume = document.getElementById("volumeInput");
-const volumeImg = document.getElementById("volumeImg");
+const volumeImg = document.querySelector(".volume > button");
 let volumeHolder;
 let muted = false;
 
