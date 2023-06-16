@@ -24,17 +24,17 @@ for (const key in database) {
   const artist = database[key][0];
   const songCard = document.createElement("div");
   songCard.classList.add("song-card");
-  songCard.innerHTML += `<div class="artist"><img src="${artist.picture}" alt="artist-cover" width="100px" height="100px"><h3>${artist.singer}</h3></div>`;
+  songCard.innerHTML += `<div class="artist"><img src="${artist.picture}" alt="artist-cover" width="80px" height="80px"><h3>${artist.singer}</h3></div>`;
   const songs = document.createElement("div");
   songs.classList.add("songs");
   for (let i = 1; i < database[key].length; i++) {
     const song = database[key][i];
     const songContainer = document.createElement("div");
     songContainer.classList.add("song");
-    songContainer.innerHTML += `<img src="${song.jpg}" alt="artist-cover" width="50px" height="50px">`;
+    songContainer.innerHTML += `<img src="${song.jpg}" alt="artist-cover" width="48px" height="48px">`;
     songContainer.innerHTML += `<span>${song.song}</span>`;
     const button = document.createElement("button");
-    button.innerHTML = '<img src="./imgs/favicon.ico" alt="artist-cover" width="50px" height="50px">';
+    button.innerHTML = '<img src="./imgs/favicon.ico" alt="artist-cover" width="48px" height="48px">';
     button.addEventListener("click", () => {
       songPlay(song, artist);
     });

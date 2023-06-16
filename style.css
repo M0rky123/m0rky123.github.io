@@ -379,15 +379,15 @@ main {
 
 .page-content {
   display: grid;
-  grid-template-rows: repeat(auto-fit, minmax(9rem, 1fr));
-  gap: 2rem 0.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
+  gap: 2rem 1rem;
   color: #efefef;
 }
 
 .song-card {
   min-height: 10rem;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   border-radius: 7px;
   background-color: #3f3f3f;
   padding: 1rem;
@@ -400,8 +400,7 @@ main {
   flex-direction: row;
   align-items: center;
   gap: 1rem;
-  margin-right: 2rem;
-  white-space: nowrap;
+  padding-bottom: 1rem;
 }
 
 .artist > img {
@@ -411,19 +410,19 @@ main {
 .artist::after {
   content: "";
   position: absolute;
-  top: 0;
-  right: -1rem;
-  width: 1px;
-  height: 100%;
-  background: #efefef;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: #20202066;
 }
 
 .songs {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-  grid-template-rows: repeat(auto-fit, minmax(1rem, 1fr));
-  gap: auto;
+  grid-template-rows: repeat(auto-fill, 50px);
+  gap: 1rem 0;
+  padding: 1rem 0 0 0;
+  flex-grow: 1;
 }
 
 .song {
@@ -442,6 +441,7 @@ main {
 
 .song > img {
   border-radius: 7px;
+  box-shadow: 2px 2px 3px -1px #2f2f2f, -2px -2px 3px -1px #2f2f2f;
 }
 
 .song button {
