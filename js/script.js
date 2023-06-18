@@ -13,7 +13,7 @@ let song = new Audio();
 
 // VARIABLES - volume
 const volume = document.getElementById("volumeInput");
-const volumeImg = document.querySelector(".volume > button");
+const volumeImg = document.getElementById("volumeImg");
 let volumeHolder;
 let muted = false;
 
@@ -24,17 +24,17 @@ for (const key in database) {
   const artist = database[key][0];
   const songCard = document.createElement("div");
   songCard.classList.add("song-card");
-  songCard.innerHTML += `<div class="artist"><img src="${artist.picture}" alt="artist-cover" width="80px" height="80px"><h3>${artist.singer}</h3></div>`;
+  songCard.innerHTML += `<div class="artist"><img src="${artist.picture}" alt="artist-cover" width="56px" height="56px"><h3>${artist.singer}</h3></div>`;
   const songs = document.createElement("div");
   songs.classList.add("songs");
   for (let i = 1; i < database[key].length; i++) {
     const song = database[key][i];
     const songContainer = document.createElement("div");
     songContainer.classList.add("song");
-    songContainer.innerHTML += `<img src="${song.jpg}" alt="artist-cover" width="48px" height="48px">`;
+    songContainer.innerHTML += `<img src="${song.jpg}" alt="artist-cover" width="32px" height="32px">`;
     songContainer.innerHTML += `<span>${song.song}</span>`;
     const button = document.createElement("button");
-    button.innerHTML = '<img src="./imgs/favicon.ico" alt="artist-cover" width="48px" height="48px">';
+    button.innerHTML = '<img src="./imgs/favicon.ico" alt="artist-cover" width="32px" height="32px">';
     button.addEventListener("click", () => {
       songPlay(song, artist);
     });
@@ -47,8 +47,11 @@ for (const key in database) {
 
 // MARQUEE
 function marquee() {
-  document.querySelector(":root").style.setProperty("--marquee", titleContainer.clientWidth - title.clientWidth + "px");
-  title.clientWidth > titleContainer.clientWidth ? title.classList.add("titleLonger") : title.classList.remove("titleLonger");
+  title.classList.remove("titleLonger");
+  if (title.clientWidth > titleContainer.clientWidth) {
+    document.querySelector(":root").style.setProperty("--marquee", titleContainer.clientWidth - title.clientWidth + "px");
+    title.classList.add("titleLonger");
+  }
 }
 
 // VOLUME
@@ -77,10 +80,12 @@ volumeImg.addEventListener("click", () => {
 });
 
 function volumeImgChanger() {
-  if (volume.value >= 1) {
-    volume.value >= 50 ? (volumeImg.src = "./imgs/icons/volume-high.svg") : (volumeImg.src = "./imgs/icons/volume-low.svg");
+  if (volume.value >= 50) {
+    volumeImg.children[0].src = "./imgs/icons/volume-high.svg";
+  } else if (volume.value >= 1) {
+    volumeImg.children[0].src = "./imgs/icons/volume-low.svg";
   } else {
-    volumeImg.src = "./imgs/icons/volume-muted.svg";
+    volumeImg.children[0].src = "./imgs/icons/volume-muted.svg";
   }
 }
 
