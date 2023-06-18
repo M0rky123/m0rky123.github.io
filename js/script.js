@@ -33,12 +33,18 @@ for (const key in database) {
     songContainer.classList.add("song");
     songContainer.innerHTML += `<img src="${song.jpg}" alt="artist-cover" width="32px" height="32px">`;
     songContainer.innerHTML += `<span>${song.song}</span>`;
-    const button = document.createElement("button");
-    button.innerHTML = '<img src="./imgs/favicon.ico" alt="artist-cover" width="32px" height="32px">';
-    button.addEventListener("click", () => {
+    const playButton = document.createElement("button");
+    playButton.innerHTML = '<img src="./imgs/favicon.ico" alt="artist-cover" width="32px" height="32px">';
+    playButton.addEventListener("click", () => {
       songPlay(song, artist);
     });
-    songContainer.appendChild(button);
+    const queueButton = document.createElement("button");
+    queueButton.innerHTML = '<img src="./imgs/icons/queue.svg" alt="queue" width="32px" height="32px">';
+    queueButton.addEventListener("click", () => {
+      addToQueue(song);
+    });
+    songContainer.appendChild(playButton);
+    songContainer.appendChild(queueButton);
     songs.appendChild(songContainer);
     songCard.appendChild(songs);
   }
